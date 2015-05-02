@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Class_Olusturucu", "Class_Olusturucu.vbproj", "{8ED41E12-FFD3-4943-A876-A6FECD6A42C7}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{8ED41E12-FFD3-4943-A876-A6FECD6A42C7}.Debug.ActiveCfg = Debug|.NET
+		{8ED41E12-FFD3-4943-A876-A6FECD6A42C7}.Debug.Build.0 = Debug|.NET
+		{8ED41E12-FFD3-4943-A876-A6FECD6A42C7}.Release.ActiveCfg = Release|.NET
+		{8ED41E12-FFD3-4943-A876-A6FECD6A42C7}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
