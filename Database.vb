@@ -19,7 +19,7 @@ Public Class Database
                 Return mTablolar
             End If
         End Get
-        Set(ByVal Value As TabloCollection)
+        Set(Value As TabloCollection)
             mTablolar = Value
         End Set
     End Property
