@@ -1,5 +1,8 @@
+Imports System.IO
+Imports System.Text
+
 Public Class Form1
-    Inherits System.Windows.Forms.Form
+    Inherits Form
 
 #Region " Windows Form Designer generated code "
 
@@ -256,7 +259,7 @@ Public Class Form1
         '
         Me.txtPassword.Location = New System.Drawing.Point(317, 52)
         Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.txtPassword.PasswordChar = ChrW(42)
         Me.txtPassword.Size = New System.Drawing.Size(114, 21)
         Me.txtPassword.TabIndex = 4
         Me.txtPassword.Text = "Tb111101"
@@ -444,17 +447,17 @@ Public Class Form1
     Dim baslangic As Integer = 0
     Dim bitis As Integer = 0
 
-    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.lbDatabaseler.Items.Clear()
         If txtServer.Text <> "" Then
             Dim dc As DatabaseCollection = Database.GetDatabases
             For Each d As Database In dc
-                Me.lbDatabaseler.Items.Add(d)
+	            lbDatabaseler.Items.Add(d)
             Next
         End If
     End Sub
 
-    Private Sub lbDatabaseler_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbDatabaseler.DoubleClick
+    Private Sub lbDatabaseler_DoubleClick(sender As Object, e As EventArgs) Handles lbDatabaseler.DoubleClick
         Dim d As Database = Me.lbDatabaseler.SelectedItem
         Me.lbTablolar.Items.Clear()
         For Each t As Tablo In d.Tablolar
@@ -464,7 +467,7 @@ Public Class Form1
         Me.btnKaydet.Enabled = False
     End Sub
 
-    Private Sub lbTablolar_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lbTablolar.DoubleClick
+    Private Sub lbTablolar_DoubleClick(sender As Object, e As EventArgs) Handles lbTablolar.DoubleClick
         Dim d As Database = Me.lbDatabaseler.SelectedItem
         Dim t As Tablo = Me.lbTablolar.SelectedItem
 
@@ -478,7 +481,7 @@ Public Class Form1
         Me.txtClassAd.Text = t.TabloAdi
     End Sub
 
-    Private Sub btnGetir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGetir.Click
+    Private Sub btnGetir_Click(sender As Object, e As EventArgs) Handles btnGetir.Click
         txtSonuc_DAL.Text = ""
         Dim d As Database = Me.lbDatabaseler.SelectedItem
         Dim t As Tablo = Me.lbTablolar.SelectedItem
@@ -534,7 +537,7 @@ Public Class Form1
         Me.btnKaydet.Enabled = True
     End Sub
 
-    Private Sub Boya(ByVal txt As RichTextBox)
+    Private Sub Boya(txt As RichTextBox)
         Dim MaviyeBoyanacakKelimeler() As String = {"private", "public", "as", "class", "integer", "string", "datetime", "get", "set", "end", "shared", "sub", "function", "overrides", "property", "dim", "new", "while", "with", "add", "region", "default", "Inherits", "imports", "Return"}
 
         'Maviye boyamak için
@@ -560,24 +563,24 @@ Public Class Form1
         End While
     End Sub
 
-    Private Sub MenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuItem1.Click
+    Private Sub MenuItem1_Click(sender As Object, e As EventArgs) Handles MenuItem1.Click
         Dim k As Kolon = Me.lbKolonlar.SelectedItem
         Tools.PrimaryKey = k
     End Sub
 
-    Private Sub btnKaydet_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnKaydet.Click
+    Private Sub btnKaydet_Click(sender As Object, e As EventArgs) Handles btnKaydet.Click
         Try
 
             'If Me.SaveFileDialog1.ShowDialog = DialogResult.Cancel Then Exit Sub
-            Dim yaz1 As New IO.StreamWriter("C:\Users\burak.altin\Documents\Visual Studio 2012\Projects\f18_2.0\F19_DAL\" & txtClassAd.Text & "_DAL.vb", False, System.Text.Encoding.GetEncoding(1254))
+            Dim yaz1 As New StreamWriter("C:\Users\burak.altin\Documents\Visual Studio 2012\Projects\f18_2.0\F19_DAL\" & txtClassAd.Text & "_DAL.vb", False, Encoding.GetEncoding(1254))
             yaz1.Write(Me.txtSonuc_DAL.Text)
             yaz1.Close()
 
-            Dim yaz2 As New IO.StreamWriter("C:\Users\burak.altin\Documents\Visual Studio 2012\Projects\F18_2.0\F19_BL\" & txtClassAd.Text & "_BL.vb", False, System.Text.Encoding.GetEncoding(1254))
+            Dim yaz2 As New StreamWriter("C:\Users\burak.altin\Documents\Visual Studio 2012\Projects\F18_2.0\F19_BL\" & txtClassAd.Text & "_BL.vb", False, Encoding.GetEncoding(1254))
             yaz2.Write(Me.txtSonuc_BL.Text)
             yaz2.Close()
 
-            Dim yaz3 As New IO.StreamWriter("C:\Users\burak.altin\Desktop\F18 Faz2\SQL\" & txtClassAd.Text & "_SP.sql", False, System.Text.Encoding.GetEncoding(1254))
+            Dim yaz3 As New StreamWriter("C:\Users\burak.altin\Desktop\F18 Faz2\SQL\" & txtClassAd.Text & "_SP.sql", False, Encoding.GetEncoding(1254))
             yaz3.Write(Me.txtSonuc_SP.Text)
             yaz3.Close()
 
@@ -588,12 +591,12 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub MenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuItem2.Click
+    Private Sub MenuItem2_Click(sender As Object, e As EventArgs) Handles MenuItem2.Click
         Dim k As Kolon = Me.lbKolonlar.SelectedItem
         Tools.TotoString = k.KolonAd
     End Sub
 
-    Private Sub CheckBox2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbTrusted.CheckedChanged
+    Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles cbTrusted.CheckedChanged
         If Me.cbTrusted.Checked = True Then
 
             Me.txtPassword.Enabled = False
@@ -605,7 +608,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbTools.CheckedChanged
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles cbTools.CheckedChanged
         If Me.cbTools.Checked = True Then
             Me.txtServer.Enabled = False
             Me.txtPassword.Enabled = False
@@ -619,7 +622,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub MenuItem3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuItem3.Click
+    Private Sub MenuItem3_Click(sender As Object, e As EventArgs) Handles MenuItem3.Click
         Dim k As Kolon = Me.lbKolonlar.SelectedItem
         Tools.IsDeleted = k
     End Sub
